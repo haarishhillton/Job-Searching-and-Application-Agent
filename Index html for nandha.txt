@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JobPilot AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">JobPilot <span>AI</span></div>
+
+        <div class="nav-links">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#jobs">Jobs</a>
+            <a href="#applications">Applications</a>
+        </div>
+
+        <button class="profile-btn">Profile</button>
+    </nav>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="dashboard">
+
+            <div class="hero-text">
+                <p class="badge">AI POWERED JOB SEARCH</p>
+
+                <h1>
+                    Find the right job.
+                    <span>Apply smarter.</span>
+                </h1>
+
+                <p class="subtitle">
+                    Your personal AI job agent finds matching jobs,
+                    ranks them, tailors your resume and cover letter,
+                    and waits for your approval before applying.
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="primary-btn" onclick="scanJobs()">
+                        🔍 Scan Jobs
+                    </button>
+
+                    <button class="secondary-btn" onclick="uploadResume()">
+                        📄 Upload Resume
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="card-header">
+                    <span>AI Job Agent</span>
+                    <span class="online">● Online</span>
+                </div>
+
+                <div class="agent-status">
+                    <div class="status-icon">✓</div>
+
+                    <div>
+                        <h3>Agent is ready</h3>
+                        <p>Your profile is being monitored.</p>
+                    </div>
+                </div>
+
+                <div class="stats">
+
+                    <div>
+                        <strong id="jobCount">24</strong>
+                        <small>Jobs Found</small>
+                    </div>
+
+                    <div>
+                        <strong>8</strong>
+                        <small>High Match</small>
+                    </div>
+
+                    <div>
+                        <strong>3</strong>
+                        <small>For Review</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE -->
+        <section class="profile-section">
+
+            <div class="section-title">
+                <div>
+                    <p class="section-label">YOUR PROFILE</p>
+                    <h2>Candidate Profile</h2>
+                </div>
+
+                <button class="edit-btn">Edit Profile</button>
+            </div>
+
+
+            <div class="profile-grid">
+
+                <div class="profile-card">
+
+                    <div class="avatar">JD</div>
+
+                    <div>
+                        <h3>John Doe</h3>
+                        <p>Backend Software Engineer</p>
+                    </div>
+
+                </div>
+
+
+                <div class="info-card">
+                    <span>EXPERIENCE</span>
+                    <strong>3+ Years</strong>
+                </div>
+
+
+                <div class="info-card">
+                    <span>LOCATION</span>
+                    <strong>India · Remote</strong>
+                </div>
+
+
+                <div class="info-card">
+                    <span>TOP SKILLS</span>
+                    <strong>Python · AWS · Docker</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- JOBS -->
+        <section class="jobs-section" id="jobs">
+
+            <div class="section-title">
+
+                <div>
+                    <p class="section-label">AI MATCHING</p>
+                    <h2>Recommended Jobs</h2>
+                </div>
+
+                <select id="filter" onchange="filterJobs()">
+                    <option value="all">All Jobs</option>
+                    <option value="high">80%+ Match</option>
+                    <option value="medium">60–79% Match</option>
+                </select>
+
+            </div>
+
+
+            <div id="jobList">
+
+                <!-- JOB 1 -->
+                <div class="job-card" data-score="92">
+
+                    <div class="company-logo purple">A</div>
+
+                    <div class="job-content">
+
+                        <h3>Backend Software Engineer</h3>
+
+                        <p class="company">
+                            ABC Technologies · Bangalore · Remote
+                        </p>
+
+                        <div class="skills">
+                            <span>Python</span>
+                            <span>AWS</span>
+                            <span>Docker</span>
+                            <span>FastAPI</span>
+                        </div>
+
+                    </div>
+
+                    <div class="match">
+                        <strong>92%</strong>
+                        <span>Excellent Match</span>
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openJob('Backend Software Engineer', 92)">
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- JOB 2 -->
+                <div class="job-card" data-score="87">
+
+                    <div class="company-logo blue">T</div>
+
+                    <div class="job-content">
+
+                        <h3>Python Engineer</h3>
+
+                        <p class="company">
+                            TechNova · Chennai · Hybrid
+                        </p>
+
+                        <div class="skills">
+                            <span>Python</span>
+                            <span>PostgreSQL</span>
+                            <span>AWS</span>
+                        </div>
+
+                    </div>
+
+                    <div class="match">
+                        <strong>87%</strong>
+                        <span>Excellent Match</span>
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openJob('Python Engineer', 87)">
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- JOB 3 -->
+                <div class="job-card" data-score="76">
+
+                    <div class="company-logo green">S</div>
+
+                    <div class="job-content">
+
+                        <h3>Software Engineer</h3>
+
+                        <p class="company">
+                            SoftWorks · Hyderabad · Remote
+                        </p>
+
+                        <div class="skills">
+                            <span>Java</span>
+                            <span>Python</span>
+                            <span>Docker</span>
+                        </div>
+
+                    </div>
+
+                    <div class="match">
+                        <strong>76%</strong>
+                        <span>Good Match</span>
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openJob('Software Engineer', 76)">
+                        View
+                    </button>
+
+                </div>
+
+
+                <!-- JOB 4 -->
+                <div class="job-card" data-score="41">
+
+                    <div class="company-logo orange">F</div>
+
+                    <div class="job-content">
+
+                        <h3>Frontend Developer</h3>
+
+                        <p class="company">
+                            FutureApps · Mumbai · On-site
+                        </p>
+
+                        <div class="skills">
+                            <span>React</span>
+                            <span>Angular</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                    </div>
+
+                    <div class="match low">
+                        <strong>41%</strong>
+                        <span>Low Match</span>
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openJob('Frontend Developer', 41)">
+                        View
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- APPLICATIONS -->
+        <section class="application-section" id="applications">
+
+            <div class="section-title">
+
+                <div>
+                    <p class="section-label">HUMAN REVIEW</p>
+                    <h2>Applications Waiting For You</h2>
+                </div>
+
+            </div>
+
+
+            <div class="review-card">
+
+                <div class="review-header">
+
+                    <div>
+                        <span class="review-badge">
+                            ACTION REQUIRED
+                        </span>
+
+                        <h3>Backend Software Engineer</h3>
+
+                        <p>ABC Technologies</p>
+                    </div>
+
+                    <div class="match-big">
+                        92%
+                    </div>
+
+                </div>
+
+
+                <div class="documents">
+
+                    <div class="document">
+                        <span>📄</span>
+
+                        <div>
+                            <strong>Tailored Resume</strong>
+                            <small>Generated by AI</small>
+                        </div>
+
+                        <button onclick="previewResume()">
+                            Preview
+                        </button>
+                    </div>
+
+
+                    <div class="document">
+                        <span>✉️</span>
+
+                        <div>
+                            <strong>Cover Letter</strong>
+                            <small>Generated by AI</small>
+                        </div>
+
+                        <button onclick="previewLetter()">
+                            Preview
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="review-actions">
+
+                    <button class="reject-btn" onclick="rejectApplication()">
+                        Reject
+                    </button>
+
+                    <button class="approve-btn" onclick="approveApplication()">
+                        ✓ Approve & Apply
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JOB MODAL -->
+
+    <div class="modal" id="jobModal">
+
+        <div class="modal-box">
+
+            <button class="close" onclick="closeModal()">×</button>
+
+            <p class="section-label">JOB ANALYSIS</p>
+
+            <h2 id="modalJobTitle">
+                Backend Software Engineer
+            </h2>
+
+            <div class="score-circle">
+                <span id="modalScore">92%</span>
+                <small>Match</small>
+            </div>
+
+            <h3>Why this job matches you</h3>
+
+            <ul class="match-list">
+                <li>✓ Python experience matches</li>
+                <li>✓ AWS experience matches</li>
+                <li>✓ Docker experience matches</li>
+                <li>✓ Experience requirement satisfied</li>
+                <li>△ Kubernetes is preferred</li>
+            </ul>
+
+            <button
+                class="primary-btn full"
+                onclick="prepareApplication()">
+                Generate Application
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div id="toast" class="toast">
+        Success
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f8fc;
+    color: #171927;
+}
+
+.navbar {
+    height: 72px;
+    background: white;
+    border-bottom: 1px solid #e7e8ef;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #6c5ce7;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #666a7a;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: #6c5ce7;
+}
+
+.profile-btn {
+    border: 0;
+    background: #f0efff;
+    color: #6556d8;
+    padding: 10px 18px;
+    border-radius: 10px;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 470px;
+
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+
+    align-items: center;
+
+    padding: 70px 10%;
+
+    background:
+        radial-gradient(circle at 80% 20%, #e9e5ff, transparent 30%),
+        white;
+}
+
+.badge,
+.section-label {
+    color: #6c5ce7;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.05;
+    margin: 18px 0;
+}
+
+.hero h1 span {
+    color: #6c5ce7;
+    display: block;
+}
+
+.subtitle {
+    max-width: 600px;
+    color: #6e7180;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn,
+.secondary-btn {
+    border: none;
+    padding: 14px 23px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.primary-btn {
+    background: #6c5ce7;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #5849d4;
+}
+
+.secondary-btn {
+    background: #eeeeff;
+    color: #5c4dd1;
+}
+
+
+/* HERO CARD */
+
+.hero-card {
+    background: white;
+    padding: 28px;
+    border-radius: 20px;
+
+    box-shadow: 0 20px 60px rgba(53, 45, 120, 0.12);
+
+    border: 1px solid #ececf3;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.online {
+    color: #22a06b;
+    font-size: 13px;
+}
+
+.agent-status {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    padding: 25px 0;
+}
+
+.agent-status p {
+    color: #858796;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.status-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+
+    background: #e7faf1;
+    color: #20a36b;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #eeeef3;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.stats strong {
+    display: block;
+    font-size: 23px;
+}
+
+.stats small {
+    color: #898b97;
+}
+
+
+/* COMMON */
+
+.profile-section,
+.jobs-section,
+.application-section {
+    padding: 65px 10%;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.section-title h2 {
+    font-size: 28px;
+    margin-top: 7px;
+}
+
+.edit-btn,
+#filter {
+    background: white;
+    border: 1px solid #dddde6;
+    padding: 11px 18px;
+    border-radius: 9px;
+}
+
+
+/* PROFILE */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 15px;
+}
+
+.profile-card,
+.info-card {
+    background: white;
+    border: 1px solid #e7e7ef;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+
+    background: #6c5ce7;
+    color: white;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.profile-card p {
+    color: #858796;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.info-card span {
+    display: block;
+    color: #9799a5;
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-card strong {
+    font-size: 14px;
+}
+
+
+/* JOBS */
+
+.jobs-section {
+    background: #fff;
+}
+
+.job-card {
+    background: #fafafe;
+    border: 1px solid #e5e5ed;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    display: grid;
+    grid-template-columns: 55px 1fr 130px 70px;
+
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 13px;
+
+    transition: 0.2s;
+}
+
+.job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(40, 40, 70, 0.07);
+}
+
+.company-logo {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.purple {
+    background: #eeeaff;
+    color: #6c5ce7;
+}
+
+.blue {
+    background: #e8f3ff;
+    color: #2878d7;
+}
+
+.green {
+    background: #e7f8ef;
+    color: #1d9a60;
+}
+
+.orange {
+    background: #fff0df;
+    color: #ed8b22;
+}
+
+.job-content h3 {
+    margin-bottom: 6px;
+}
+
+.company {
+    color: #7e808c;
+    font-size: 13px;
+}
+
+.skills {
+    margin-top: 12px;
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.skills span {
+    background: #ededf5;
+    padding: 5px 9px;
+    border-radius: 6px;
+
+    font-size: 11px;
+}
+
+.match strong {
+    display: block;
+    color: #20a36b;
+    font-size: 22px;
+}
+
+.match span {
+    color: #6d7180;
+    font-size: 10px;
+}
+
+.match.low strong {
+    color: #e85d5d;
+}
+
+.view-btn {
+    border: 0;
+    background: #eeeeff;
+    color: #5e50d5;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+/* APPLICATION */
+
+.application-section {
+    background: #f7f8fc;
+}
+
+.review-card {
+    background: white;
+    border: 1px solid #dedee8;
+
+    padding: 28px;
+
+    border-radius: 17px;
+
+    box-shadow: 0 8px 35px rgba(40, 40, 70, 0.05);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-badge {
+    background: #fff1d9;
+    color: #bd7414;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.review-header h3 {
+    margin-top: 12px;
+}
+
+.review-header p {
+    color: #888b98;
+    margin-top: 5px;
+}
+
+.match-big {
+    font-size: 38px;
+    font-weight: bold;
+    color: #20a36b;
+}
+
+.documents {
+    margin-top: 25px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.document {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    border: 1px solid #e5e5ed;
+    padding: 15px;
+
+    border-radius: 10px;
+}
+
+.document span {
+    font-size: 24px;
+}
+
+.document small {
+    display: block;
+    color: #888b98;
+    margin-top: 3px;
+}
+
+.document button {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: #6455d8;
+    cursor: pointer;
+}
+
+.review-actions {
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.reject-btn,
+.approve-btn {
+    border: none;
+    padding: 13px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.reject-btn {
+    background: #f1f1f5;
+    color: #666978;
+}
+
+.approve-btn {
+    background: #20a36b;
+    color: white;
+}
+
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(20, 20, 35, 0.6);
+
+    display: none;
+    place-items: center;
+
+    z-index: 100;
+}
+
+.modal-box {
+    width: 450px;
+    max-width: 90%;
+
+    background: white;
+    border-radius: 18px;
+
+    padding: 30px;
+
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+
+    border: none;
+    background: none;
+
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.score-circle {
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: #e9faf2;
+    color: #20a36b;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 25px auto;
+}
+
+.score-circle span {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.score-circle small {
+    color: #777;
+}
+
+.match-list {
+    list-style: none;
+    margin: 18px 0 25px;
+}
+
+.match-list li {
+    padding: 7px 0;
+    color: #555866;
+}
+
+.full {
+    width: 100%;
+}
+
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    background: #171927;
+    color: white;
+
+    padding: 15px 22px;
+
+    border-radius: 9px;
+
+    display: none;
+
+    z-index: 200;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 50px 6%;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .job-card {
+        grid-template-columns: 50px 1fr;
+    }
+
+    .match,
+    .view-btn {
+        grid-column: 2;
+    }
+
+    .documents {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .profile-section,
+    .jobs-section,
+    .application-section {
+        padding: 45px 5%;
+    }
+
+    .hero {
+        padding: 45px 5%;
+    }
+}
+// ===============================
+// JOB DATA
+// ===============================
+
+const jobs = [
+    {
+        title: "Backend Software Engineer",
+        company: "ABC Technologies",
+        score: 92
+    },
+    {
+        title: "Python Engineer",
+        company: "TechNova",
+        score: 87
+    },
+    {
+        title: "Software Engineer",
+        company: "SoftWorks",
+        score: 76
+    },
+    {
+        title: "Frontend Developer",
+        company: "FutureApps",
+        score: 41
+    }
+];
+
+
+// ===============================
+// SCAN JOBS
+// ===============================
+
+function scanJobs() {
+
+    showToast("🔍 AI is scanning new jobs...");
+
+    const count = document.getElementById("jobCount");
+
+    let current = 0;
+
+    const interval = setInterval(() => {
+
+        current++;
+
+        count.innerText = 20 + current;
+
+        if (current >= 4) {
+
+            clearInterval(interval);
+
+            showToast("✓ 24 jobs scanned successfully");
+
+        }
+
+    }, 300);
+
+}
+
+
+// ===============================
+// RESUME UPLOAD
+// ===============================
+
+function uploadResume() {
+
+    const input = document.createElement("input");
+
+    input.type = "file";
+
+    input.accept = ".pdf,.doc,.docx";
+
+    input.onchange = function () {
+
+        if (input.files.length > 0) {
+
+            showToast(
+                "📄 Resume uploaded: " +
+                input.files[0].name
+            );
+
+        }
+
+    };
+
+    input.click();
+
+}
+
+
+// ===============================
+// OPEN JOB
+// ===============================
+
+function openJob(title, score) {
+
+    document.getElementById("modalJobTitle")
+        .innerText = title;
+
+    document.getElementById("modalScore")
+        .innerText = score + "%";
+
+    document.getElementById("jobModal")
+        .style.display = "grid";
+
+}
+
+
+// ===============================
+// CLOSE MODAL
+// ===============================
+
+function closeModal() {
+
+    document.getElementById("jobModal")
+        .style.display = "none";
+
+}
+
+
+// ===============================
+// PREPARE APPLICATION
+// ===============================
+
+function prepareApplication() {
+
+    closeModal();
+
+    showToast(
+        "🤖 AI is generating your tailored resume..."
+    );
+
+    setTimeout(() => {
+
+        showToast(
+            "✉️ Cover letter generated. Ready for review!"
+        );
+
+        document
+            .getElementById("applications")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }, 1800);
+
+}
+
+
+// ===============================
+// RESUME PREVIEW
+// ===============================
+
+function previewResume() {
+
+    alert(
+`TAILORED RESUME
+
+John Doe
+Backend Software Engineer
+
+Skills
+• Python
+• AWS
+• Docker
+• FastAPI
+
+Experience
+3+ years Backend Development
+
+AI Note:
+Resume tailored to emphasize skills
+relevant to this job posting.`
+    );
+
+}
+
+
+// ===============================
+// COVER LETTER PREVIEW
+// ===============================
+
+function previewLetter() {
+
+    alert(
+`COVER LETTER
+
+Dear Hiring Manager,
+
+I am excited to apply for the Backend
+Software Engineer position.
+
+My experience with Python, AWS and Docker
+closely matches the requirements of this role.
+
+I would welcome the opportunity to contribute
+my backend engineering experience to your team.
+
+Regards,
+John Doe`
+    );
+
+}
+
+
+// ===============================
+// APPROVE APPLICATION
+// ===============================
+
+function approveApplication() {
+
+    const confirmed = confirm(
+        "Are you sure you want to approve this application?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    showToast(
+        "⏳ Application approved. Submitting..."
+    );
+
+    setTimeout(() => {
+
+        showToast(
+            "✅ Application submitted successfully!"
+        );
+
+    }, 1800);
+
+}
+
+
+// ===============================
+// REJECT APPLICATION
+// ===============================
+
+function rejectApplication() {
+
+    const confirmed = confirm(
+        "Reject this application?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    showToast(
+        "Application rejected."
+    );
+
+}
+
+
+// ===============================
+// FILTER JOBS
+// ===============================
+
+function filterJobs() {
+
+    const filter =
+        document.getElementById("filter").value;
+
+    const cards =
+        document.querySelectorAll(".job-card");
+
+    cards.forEach(card => {
+
+        const score =
+            Number(card.dataset.score);
+
+        if (filter === "all") {
+
+            card.style.display = "grid";
+
+        }
+
+        else if (filter === "high") {
+
+            card.style.display =
+                score >= 80 ? "grid" : "none";
+
+        }
+
+        else if (filter === "medium") {
+
+            card.style.display =
+                score >= 60 && score < 80
+                    ? "grid"
+                    : "none";
+
+        }
+
+    });
+
+}
+
+
+// ===============================
+// TOAST MESSAGE
+// ===============================
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.innerText = message;
+
+    toast.style.display = "block";
+
+    setTimeout(() => {
+
+        toast.style.display = "none";
+
+    }, 3000);
+
+}
+
+
+// ===============================
+// CLOSE MODAL ON OUTSIDE CLICK
+// ===============================
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("jobModal");
+
+    if (event.target === modal) {
+
+        closeModal();
+
+    }
+
+};
